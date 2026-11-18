@@ -1,0 +1,34 @@
+
+version: 2
+
+sources:
+  - name: bookstore_raw
+    description: "Datos originales procedentes del sistema de gestión de la librería."
+
+    schema: raw
+
+    tables:
+      - name: customers
+        description: "Tabla externa con los datos originales de los clientes."
+
+        columns:
+          - name: customer_id
+            description: "Identificador único del cliente."
+            data_tests:
+              - not_null
+              - unique
+
+      - name: books
+        description: "Tabla externa con los datos originales de los libros."
+
+      - name: orders
+        description: "Tabla externa con los pedidos originales."
+
+      - name: order_items
+        description: "Tabla externa con las líneas originales de los pedidos."
+
+      - name: authors
+        description: "Tabla externa con los autores."
+
+      - name: categories
+        description: "Tabla externa con las categorías."

@@ -1,0 +1,43 @@
+
+version: 2
+
+seeds:
+  - name: customers
+    description: "Datos de los clientes de la librería."
+    columns:
+      - name: customer_id
+        description: "Identificador único del cliente."
+
+  - name: books
+    description: "Catálogo de libros disponibles en la librería."
+    columns:
+      - name: book_id
+        description: "Identificador único del libro."
+      - name: isbn
+        description: "Identificador ISBN del libro, almacenado como texto."
+
+  - name: authors
+    description: "Catálogo de autores."
+    columns:
+      - name: author_id
+        description: "Identificador único del autor."
+
+  - name: categories
+    description: "Categorías temáticas de los libros."
+    columns:
+      - name: category_id
+        description: "Identificador único de la categoría."
+
+  - name: orders
+    description: "Pedidos realizados por los clientes."
+    columns:
+      - name: order_id
+        description: "Identificador único del pedido."
+
+  - name: order_items
+    description: "Líneas individuales que componen cada pedido."
+    columns:
+      - name: order_id
+        description: "Identificador del pedido al que pertenece la línea."
+      - name: book_id
+        description: "Identificador del libro incluido en la línea."

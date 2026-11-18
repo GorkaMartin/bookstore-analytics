@@ -1,0 +1,121 @@
+
+version: 2
+
+models:
+  - name: stg_customers
+    description: >
+      Modelo de staging de clientes. Limpia los campos de texto,
+      normaliza los correos electrónicos y convierte la fecha de alta.
+
+    columns:
+      - name: customer_id
+        description: "Identificador único del cliente."
+      - name: first_name
+        description: "Nombre del cliente."
+      - name: last_name
+        description: "Apellidos del cliente."
+      - name: email
+        description: "Correo electrónico normalizado en minúsculas."
+      - name: phone
+        description: "Teléfono de contacto."
+      - name: city
+        description: "Ciudad de residencia."
+      - name: region
+        description: "Región de residencia."
+      - name: country
+        description: "País de residencia."
+      - name: signup_date
+        description: "Fecha de registro del cliente."
+
+  - name: stg_books
+    description: >
+      Modelo de staging de libros. Limpia los campos de texto
+      y convierte los identificadores, el año y el precio a sus tipos correspondientes.
+
+    columns:
+      - name: book_id
+        description: "Identificador único del libro."
+      - name: title
+        description: "Título del libro."
+      - name: author_id
+        description: "Identificador del autor del libro."
+      - name: category_id
+        description: "Identificador de la categoría del libro."
+      - name: publication_year
+        description: "Año de publicación."
+      - name: list_price
+        description: "Precio de catálogo del libro en euros."
+      - name: isbn
+        description: "Código ISBN del libro."
+      - name: language
+        description: "Idioma del libro normalizado en minúsculas."
+
+  - name: stg_authors
+    description: >
+      Modelo de staging de autores. Limpia los campos de texto
+      y convierte el año de nacimiento a entero.
+
+    columns:
+      - name: author_id
+        description: "Identificador único del autor."
+      - name: author_name
+        description: "Nombre completo del autor."
+      - name: country
+        description: "País de origen del autor."
+      - name: birth_year
+        description: "Año de nacimiento del autor."
+
+  - name: stg_categories
+    description: >
+      Modelo de staging de categorías. Limpia los campos de texto
+      de las categorías de libros.
+
+    columns:
+      - name: category_id
+        description: "Identificador único de la categoría."
+      - name: category_name
+        description: "Nombre de la categoría."
+      - name: category_description
+        description: "Descripción de la categoría."
+
+  - name: stg_orders
+    description: >
+      Modelo de staging de pedidos. Convierte los identificadores,
+      normaliza los estados y canales y tipa los campos de fecha e importe.
+
+    columns:
+      - name: order_id
+        description: "Identificador único del pedido."
+      - name: customer_id
+        description: "Identificador del cliente que realizó el pedido."
+      - name: order_date
+        description: "Fecha en la que se realizó el pedido."
+      - name: order_status
+        description: "Estado del pedido normalizado en minúsculas."
+      - name: sales_channel
+        description: "Canal de venta normalizado en minúsculas."
+      - name: shipping_city
+        description: "Ciudad de destino del envío."
+      - name: shipping_cost
+        description: "Coste de envío del pedido en euros."
+
+  - name: stg_order_items
+    description: >
+      Modelo de staging de líneas de pedido. Convierte los identificadores,
+      las cantidades, los precios y los descuentos a sus tipos correspondientes.
+
+    columns:
+      - name: order_item_id
+        description: "Identificador único de la línea de pedido."
+      - name: order_id
+        description: "Identificador del pedido al que pertenece la línea."
+      - name: line_number
+        description: "Número de línea dentro del pedido."
+      - name: book_id
+        description: "Identificador del libro incluido en la línea."
+      - name: quantity
+        description: "Cantidad de unidades del libro."
+      - name: unit_price
+        description: "Precio unitario aplicado en la línea, en euros."
+      - name: discount_pct
+        description: "Porcentaje de descuento aplicado a la línea."

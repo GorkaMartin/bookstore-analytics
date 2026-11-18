@@ -1,0 +1,90 @@
+
+version: 2
+
+models:
+  - name: fact_sales
+    description: >
+      Tabla de hechos con el detalle de las ventas de la librería.
+      Su granularidad es una fila por línea de pedido.
+      Contiene las claves de las dimensiones y las métricas
+      económicas y de cantidad necesarias para analizar las ventas.
+
+    columns:
+      - name: order_item_id
+        description: "Identificador único de cada línea de pedido."
+        data_tests:
+          - unique
+          - not_null
+
+      - name: order_id
+        description: "Identificador del pedido al que pertenece la línea."
+
+      - name: line_number
+        description: "Número de línea dentro del pedido."
+
+      - name: customer_key
+        description: "Clave sustituta que relaciona la venta con dim_customers."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_customers')
+                field: customer_key
+
+      - name: book_key
+        description: "Clave sustituta que relaciona la venta con dim_books."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_books')
+                field: book_key
+
+      - name: date_key
+        description: "Clave que relaciona la venta con dim_date."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_date')
+                field: date_key
+
+      - name: order_status
+        description: "Estado del pedido al que pertenece la línea."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - completed
+                  - shipped
+                  - pending
+                  - cancelled
+                  - returned
+
+      - name: sales_channel
+        description: "Canal por el que se realizó el pedido."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - online
+                  - store
+                  - marketplace
+
+      - name: shipping_city
+        description: "Ciudad de destino del envío."
+
+      - name: quantity
+        description: "Número de unidades del libro en la línea de pedido."
+
+      - name: unit_price
+        description: "Precio unitario aplicado en la línea de pedido."
+
+      - name: gross_amount
+        description: "Importe bruto de la línea antes de aplicar descuentos."
+
+      - name: discount_amount
+        description: "Importe descontado en la línea de pedido."
+
+      - name: net_amount
+        description: "Importe neto de la línea después de aplicar descuentos."

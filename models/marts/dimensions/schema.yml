@@ -1,0 +1,158 @@
+
+version: 2
+
+models:
+  
+  - name: dim_customers
+    description: >
+      Dimensión de clientes de la librería.
+      Contiene información identificativa y geográfica
+      de cada cliente. Su granularidad es una fila por cliente.
+
+    columns:
+      - name: customer_key
+        description: >
+          Clave sustituta generada mediante MD5.
+          Se utiliza para relacionar los clientes con fact_sales.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        description: >
+          Identificador original del cliente procedente del sistema fuente.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: first_name
+        description: "Nombre del cliente."
+
+      - name: last_name
+        description: "Apellidos del cliente."
+
+      - name: email
+        description: "Correo electrónico normalizado a minúsculas."
+
+      - name: phone
+        description: "Teléfono del cliente."
+
+      - name: city
+        description: "Ciudad del cliente."
+
+      - name: region
+        description: "Región del cliente."
+
+      - name: country
+        description: "País del cliente."
+
+      - name: signup_date
+        description: "Fecha en la que el cliente se registró."
+
+  
+  - name: dim_books
+    description: >
+      Dimensión de libros de la librería.
+      Integra información bibliográfica, datos de autores
+      y categorías. Su granularidad es una fila por libro.
+
+    columns:
+      - name: book_key
+        description: >
+          Clave sustituta generada mediante MD5.
+          Se utiliza para relacionar los libros con fact_sales.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: book_id
+        description: "Identificador original del libro."
+        data_tests:
+          - unique
+          - not_null
+
+      - name: title
+        description: "Título del libro."
+
+      - name: isbn
+        description: "Código ISBN del libro."
+
+      - name: publication_year
+        description: "Año de publicación."
+
+      - name: list_price
+        description: "Precio de catálogo del libro."
+
+      - name: language
+        description: "Idioma del libro."
+
+      - name: author_id
+        description: "Identificador original del autor."
+
+      - name: author_name
+        description: "Nombre del autor."
+
+      - name: author_country
+        description: "País de origen del autor."
+
+      - name: author_birth_year
+        description: "Año de nacimiento del autor."
+
+      - name: category_id
+        description: "Identificador original de la categoría."
+
+      - name: category_name
+        description: "Nombre de la categoría del libro."
+
+      - name: category_description
+        description: "Descripción de la categoría."
+
+
+  
+  - name: dim_date
+    description: >
+      Dimensión calendario que permite analizar las ventas
+      por año, trimestre, mes, día y día de la semana.
+      Su granularidad es una fila por fecha.
+
+    columns:
+      - name: date_key
+        description: >
+          Clave de fecha con formato numérico YYYYMMDD.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: date_day
+        description: "Fecha completa del calendario."
+        data_tests:
+          - unique
+          - not_null
+
+      - name: year
+        description: "Año de la fecha."
+
+      - name: quarter
+        description: "Trimestre del año, del 1 al 4."
+
+      - name: month
+        description: "Número del mes, del 1 al 12."
+
+      - name: month_name
+        description: "Nombre del mes."
+
+      - name: day
+        description: "Número del día dentro del mes."
+
+      - name: day_of_week
+        description: >
+          Día de la semana según ISO: lunes es 1 y domingo es 7.
+
+      - name: day_name
+        description: "Nombre del día de la semana."
+
+      - name: is_weekend
+        description: >
+          Indica si la fecha corresponde a sábado o domingo.
+
+

@@ -1,0 +1,43 @@
+
+version: 2
+
+models:
+  - name: int_order_items_enriched
+    description: >
+      Modelo intermedio que combina las líneas de pedido con la información
+      de sus pedidos y calcula los importes brutos, descuentos e importes netos.
+      Mantiene una fila por línea de pedido.
+
+    columns:
+      - name: order_item_id
+        description: "Identificador único de la línea de pedido."
+      - name: order_id
+        description: "Identificador del pedido."
+      - name: line_number
+        description: "Número de línea dentro del pedido."
+      - name: book_id
+        description: "Identificador del libro."
+      - name: customer_id
+        description: "Identificador del cliente que realizó el pedido."
+      - name: order_date
+        description: "Fecha en la que se realizó el pedido."
+      - name: order_status
+        description: "Estado del pedido."
+      - name: sales_channel
+        description: "Canal por el que se realizó la venta."
+      - name: shipping_city
+        description: "Ciudad de destino del envío."
+      - name: shipping_cost
+        description: "Coste de envío del pedido en euros."
+      - name: quantity
+        description: "Unidades del libro incluidas en la línea."
+      - name: unit_price
+        description: "Precio unitario aplicado, en euros."
+      - name: discount_pct
+        description: "Porcentaje de descuento aplicado."
+      - name: gross_amount
+        description: "Importe bruto antes de descuentos, en euros."
+      - name: discount_amount
+        description: "Importe del descuento aplicado, en euros."
+      - name: net_amount
+        description: "Importe neto después de descuentos, en euros."
